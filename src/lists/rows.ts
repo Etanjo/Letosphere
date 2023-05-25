@@ -21,8 +21,7 @@ export class Cell{
     this.id = cellCount
     cellCount+=1
     if(onStart){
-    list.push(this)
-    console.log(list)}
+    list.push(this)}
   }
 }
 

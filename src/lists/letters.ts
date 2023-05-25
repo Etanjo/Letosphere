@@ -11,10 +11,8 @@ class Letter{
     
     this.letter = letter;
     this.count = 6-value;
-    console.log(this.count)
     for(let i = 0; i<this.count; i++){
       letters.push(this)
-      console.log(letters)
     }
     
   }}

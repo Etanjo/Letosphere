@@ -1,13 +1,10 @@
 <script lang="ts">
-  import WordEntry from './components/WordEntry.svelte'
-  import PhraseFinder from './components/PhraseFinder.svelte';
   import GameBoard from './components/GameBoard.svelte'
   import WordLine from './components/WordLine.svelte'
   import {gameState, lastClick} from './store'
   import StartPopup from './components/StartPopup.svelte'
   
-  $: console.log('State change:',$gameState);
-  $: console.log('Last click: ',$lastClick)
+
 
   let gameStarted = false;
   

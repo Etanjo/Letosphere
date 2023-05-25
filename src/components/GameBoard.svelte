@@ -9,12 +9,9 @@
   let rows = getRows();
   
   function updateRows(){
-    console.log('row time!!')
     rows = rows
   }
-  $:{
-    console.log($gameState.addressChanges)
-  }
+ 
   $: wordReset($gameState.letterCount)
   	const [send, receive] = crossfade({
 		duration: d => Math.sqrt(d * 200),

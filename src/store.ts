@@ -12,7 +12,7 @@ export let gameState = writable({
 })
 
 gameState.text+='l'
-console.log(gameState.text)
+
 
 export const lastClick = derived(
   gameState,
@@ -33,7 +33,6 @@ export function submitWord(){
         $gameState.successfulSubmit = true
         
         return $gameState
-        console.log($gameState.successfulSubmit, $gamestate.text.length)
         }else{
           return $gameState
         }
@@ -51,7 +50,6 @@ export function wordReset(v){
       $gameState.successfulSubmit = 0
       $gameState.clicked = false
       $gameState.totalLetters+=$gameState.letterCount
-      console.log('total letters:', $gameState.totalLetters)
       $gameState.letterCount = 0
     }
     return $gameState

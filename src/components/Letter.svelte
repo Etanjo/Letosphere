@@ -18,7 +18,6 @@
   }
   $: updatePosition($gameState.successfulSubmit)
   $: checkBelow($addressChanges)
- // $:checkTop($addressChanges)
 
   function updateAdjacency (coord) {
     
@@ -33,26 +32,20 @@
     }}
   
   
-  export function checkClick(){
-    /*let last = $gameState.stack.slice(-1)
-    if(last.length){
-      last = last[0]
-    }
-    console.log(last)*/
-    /*console.log(last[0]==rn, last[1]==cn)*/    
+  export function checkClick(){ 
     if($gameState.clicked == false){
       /* If nothing is selected */
       $gameState.clicked = true
       $gameState.stack = [...$gameState.stack,[rn,cn]]
       $gameState.text = $gameState.text+letter.letter
-      console.log($gameState.text)
+   
       selected = true
     } else if($gameState.clicked==true&&$lastClick[0]==rn&&$lastClick[1]==cn){
       /* If we're clicking the last one again */
       $gameState.stack.pop()
       $gameState = $gameState
       $gameState.text = $gameState.text.substring(0,$gameState.text.length-1)
-      console.log($gameState.text)
+      
       selected = false
       if($gameState.stack.length == 0){
         $gameState.clicked = false
@@ -62,26 +55,23 @@
     }else if(nonAdjacent==false && selected == false){
       $gameState.stack = [...$gameState.stack,[rn,cn]]
       $gameState.text = $gameState.text+letter.letter
-      console.log($gameState.text)
+   
       selected = true
       } 
   }
   function updatePosition(thing){
-    
-    /*console.log($gameState.addressChanges.indexOf({nextRow,cn})>-1)
-    console.log($gameState.addressChanges)
-    console.log(nextRow, cn)*/
+
     if(thing==true){
-      console.log('Checking state',rn,cn, thing)
+      
       nonAdjacent=false
       if(selected==true){
         $gameState.score+=letter.value
-        console.log(rn==0)
+        
         if(rn==0){
           //debugger;
           let newSelf = new Cell(rows[0], false)
           rows[rn][cn] = newSelf 
-          console.log('new values:',rows[rn][cn])
+          
           onThing()
         }
         else{
@@ -99,13 +89,8 @@
   function checkBelow(list)
   {
     let nextRow = rn+1
-    console.log('Checking', nextRow, cn, list.length)
-    //console.log('Is',nextRow,cn,'=',JSON.stringify(list[0]));
-    console.log(list[0])
     let change = list.find((o)=>o.rn==nextRow&&o.cn==cn)
     if(change){
-        console.log('Changing',rn,cn,'to',nextRow)
-        console.log(rows[nextRow][cn])
         let self = rows[rn][cn]
       if(rn==0){
         rows[rn][cn] = new Cell(rows[0], false)
@@ -122,11 +107,8 @@
           {rn,cn}
         ]
       }
-    
-        
         onThing()
         rn = nextRow
-      console.log($addressChanges)
   }}
 </script>
 
