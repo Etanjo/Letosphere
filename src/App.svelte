@@ -13,6 +13,7 @@
 <main>
   <div>
   <h1>LETOSPHERE</h1>
+  <h4><a href= 'https://github.com/Etanjo/Letosphere/commits/main' target= '_blank' >Patch Notes</a></h4>
     {#if gameStarted == true}
       <p>Score: {$gameState.score}</p>
       <WordLine/>
@@ -29,6 +30,11 @@
     font-size: 40px;
     color: #00B1CC;
     text-shadow: 1px 1px 3px
+  }
+  a{
+    color: #00B1CC;
+    text-shadow: 1px 1px 3px;
+    text-decoration: none;
   }
   p{
     
