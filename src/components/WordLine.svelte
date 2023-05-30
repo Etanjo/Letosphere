@@ -1,5 +1,5 @@
 <script>
-  export let correct = true;
+  export let correct = false;
   export let incorrect = false;
   import {gameState} from '../store'
   import {submitWord} from '../store'
