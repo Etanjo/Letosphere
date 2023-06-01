@@ -13,7 +13,11 @@
 <main>
   <div>
   <h1>LETOSPHERE</h1>
-  <h4><a href= 'https://github.com/Etanjo/Letosphere/commits/main' target= '_blank' >Patch Notes</a></h4>
+  <h4>
+    <a href= 'https://github.com/Etanjo/Letosphere/commits/main' target= '_blank' >Patch Notes</a>
+  <br/>
+    <a href= 'https://sunryze-studios.netlify.app/web.html' target= '_blank' >Other Games</a>
+</h4>
     {#if gameStarted == true}
       <p>Score: {$gameState.score}</p>
       <WordLine/>
@@ -32,12 +36,17 @@
     text-shadow: 1px 1px 3px
   }
   a{
-    color: #00B1CC;
+    color: #b10906;
     text-shadow: 1px 1px 3px;
     text-decoration: none;
+    transition: all 300ms;
+    text-align: center;
   }
-  p{
-    
+  a:hover{
+    background-color: #b10906;
+    color: #DDDEE4;
+    text-shadow: none;
+    border-radius: 5px;
   }
   div {
     border: 1px solid #eee;
