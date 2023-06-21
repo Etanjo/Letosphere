@@ -18,6 +18,20 @@
     text-align: center;
     text-transform: capitalize;
   }
+  button{
+    background-color: #DDDEE4;
+    color: #00B1CC;
+    transition: all 300ms;
+    border: 2px solid #00B1CC;
+    border-radius: 5px;
+
+  }
+  button:active{
+    color: #DDDEE4;
+    background-color: #00B1CC;
+    border: 2px solid #DDDEE4;
+  }
+
   div::after{
     display: block;
     width: 90%;
