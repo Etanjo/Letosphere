@@ -47,7 +47,7 @@ export function wordReset(v){
     ($gameState)=>{
     if(v == $gameState.text.length){
       $gameState.text = ''
-      $gameState.successfulSubmit = 0
+      $gameState.successfulSubmit = false
       $gameState.clicked = false
       $gameState.totalLetters+=$gameState.letterCount
       $gameState.letterCount = 0

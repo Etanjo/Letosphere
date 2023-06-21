@@ -1,118 +1,19 @@
 <script>
-  export let letter = {}
-  export let id
-  export let selected = false;
-  export let nonAdjacent = false;
-  export let clickable = true
+  export let cell = {}
+  export let letter = cell.letter
+  export let id = cell.id;
+  export let clickable = cell.clickable
+  export let nonAdjacent = !clickable;
   import {gameState,lastClick,addressChanges} from '../store'
   export let rn 
   export let cn
-  import {rows, Cell} from '../lists/rows'
+  export let selected = $gameState.stack.indexOf({rn,cn})>-1
+  import {rows, Cell, graveyard} from '../lists/rows'
   export let onThing
-  import {flip} from 'svelte/animate'
 
-  $: {
-    updateAdjacency($lastClick)
-    
-    
-  }
-  $: updatePosition($gameState.successfulSubmit)
-  $: checkBelow($addressChanges)
-
-  function updateAdjacency (coord) {
-    
-      if(Math.abs(coord[0]-rn)==1&&Math.abs(coord[1]-cn)==0){
-        nonAdjacent = false
-    }   else if(Math.abs(coord[0]-rn)==0&&Math.abs(coord[1]-cn)==1){
-        nonAdjacent = false
-    }   else if($gameState.clicked == true){
-        nonAdjacent= true
-    }  else if($gameState.clicked == false){
-        nonAdjacent = false
-    }}
-  
-  
-  export function checkClick(){ 
-    if($gameState.clicked == false){
-      /* If nothing is selected */
-      $gameState.clicked = true
-      $gameState.stack = [...$gameState.stack,[rn,cn]]
-      $gameState.text = $gameState.text+letter.letter
-   
-      selected = true
-    } else if($gameState.clicked==true&&$lastClick[0]==rn&&$lastClick[1]==cn){
-      /* If we're clicking the last one again */
-      $gameState.stack.pop()
-      $gameState = $gameState
-      $gameState.text = $gameState.text.substring(0,$gameState.text.length-1)
-      
-      selected = false
-      if($gameState.stack.length == 0){
-        $gameState.clicked = false
-        
-      }
-
-    }else if(nonAdjacent==false && selected == false){
-      $gameState.stack = [...$gameState.stack,[rn,cn]]
-      $gameState.text = $gameState.text+letter.letter
-   
-      selected = true
-      } 
-  }
-  function updatePosition(thing){
-
-    if(thing==true){
-      
-      nonAdjacent=false
-      if(selected==true){
-        $gameState.score+=letter.value
-        
-        if(rn==0){
-          //debugger;
-          let newSelf = new Cell(rows[0], false)
-          rows[rn][cn] = newSelf 
-          
-          onThing()
-        }
-        else{
-          $addressChanges = [...$addressChanges, {rn,cn}]
-          
-        }
-        $gameState.letterCount+=1
-        selected = false
-        
-      }
-      }
-    }
-    
-  
-  function checkBelow(list)
-  {
-    let nextRow = rn+1
-    let change = list.find((o)=>o.rn==nextRow&&o.cn==cn)
-    if(change){
-        let self = rows[rn][cn]
-      if(rn==0){
-        rows[rn][cn] = new Cell(rows[0], false)
-        rows[nextRow][cn] = self
-    $addressChanges = [
-          ...$addressChanges.filter((o)=>o!=change)
-        ]
-      }else{
-        rows[rn][cn].id = $gameState.fakeID
-        rows[nextRow][cn]=self
-        $gameState.fakeID+=1
-          $addressChanges = [
-          ...$addressChanges.filter((o)=>o!=change),
-          {rn,cn}
-        ]
-      }
-        onThing()
-        rn = nextRow
-  }}
 </script>
 
-<div class:selected on:click ={()=>checkClick()}  class:nonAdjacent>
+<div class={letter.letter} class:selected on:click  class:nonAdjacent>
   <p>{letter.letter}</p>
 </div>
 
