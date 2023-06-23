@@ -86,8 +86,6 @@ function onclick (cell, rn, cn) {
       $gameState.text = $gameState.text+cell.letter.letter
    
       cell.selected = true
-      } else{
-        cell.selected=false
       }
   }
       function handleSubmit(cause){
