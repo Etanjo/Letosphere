@@ -125,10 +125,40 @@ function onclick (cell, rn, cn) {
       
       
     }}
+    function clearRow(r){
+      console.log('clearing')
+      for(let c = 0; c<5;c++){
+        $rows[r][c] = null
+      }
+      for(let c = 0;c<5;c++){
+            if(!$rows[r][c]){
+              $rows[r][c] = new Cell()
+            }
+          }
+    }
+
+      function clearBottomRow(){
+        if($gameState.score>=8){
+          clearRow(4)
+          $gameState.score-=8
+        }
+      }
+      function clearBoard(){
+        if($gameState.score>=40){
+          for(let r = 0;r<5;r++){
+            clearRow(r)
+          }
+          $gameState.score-=40
+        }
+      }
       $: handleSubmit($gameState.successfulSubmit)
 </script>
 
 <main>
+  <div class = power-ups>
+    <button on:click={()=>clearBottomRow()}>CLEAR BOTTOM ROW (8 points)</button>
+    <button on:click={()=>clearBoard()}>CLEAR BOARD (40 points)</button>
+  </div>
   <div class = board>
     {#each $rows as row, rn}
 
@@ -159,5 +189,23 @@ function onclick (cell, rn, cn) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 
+  }
+  button{
+    background-color: #DDDEE4;
+    color: #00B1CC;
+    transition: all 300ms;
+    border: 2px solid #00B1CC;
+    border-radius: 5px;
+
+  }
+  button:active{
+    color: #DDDEE4;
+    background-color: #00B1CC;
+    border: 2px solid #DDDEE4;
+  }
+  .power-ups{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
   }
 </style>
